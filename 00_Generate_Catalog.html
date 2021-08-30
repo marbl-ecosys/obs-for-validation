@@ -1,0 +1,404 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>00 - Build an Intake-ESM Catalog &#8212; Analysis Project Template</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Spin up a Dask Cluster" href="01_Plot_Output.html" />
+    <link rel="prev" title="Introduction" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">Analysis Project Template</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   00 - Build an Intake-ESM Catalog
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Plot_Output.html">
+   Spin up a Dask Cluster
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/00_Generate_Catalog.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/00_Generate_Catalog.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="build-an-intake-esm-catalog">
+<h1>00 - Build an Intake-ESM Catalog<a class="headerlink" href="#build-an-intake-esm-catalog" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">yaml</span>
+
+<span class="kn">from</span> <span class="nn">ecgtools</span> <span class="kn">import</span> <span class="n">Builder</span>
+<span class="kn">from</span> <span class="nn">ecgtools.parsers.cesm</span> <span class="kn">import</span> <span class="n">parse_cesm_timeseries</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;case_config.yml&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fptr</span><span class="p">:</span>
+    <span class="n">case_config</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">fptr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build_catalog</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">Builder</span><span class="p">(</span>
+        <span class="c1"># Directory with the output</span>
+        <span class="n">path</span><span class="p">,</span>
+        <span class="c1"># Depth of 1 since we are sending it to the case output directory</span>
+        <span class="n">depth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="c1"># Exclude the timeseries and restart directories</span>
+        <span class="n">exclude_patterns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;*/hist/*&quot;</span><span class="p">,</span> <span class="s2">&quot;*/rest/*&quot;</span><span class="p">],</span>
+        <span class="c1"># Number of jobs to execute - should be equal to # threads you are using</span>
+        <span class="n">njobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">b</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">parse_cesm_timeseries</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cases</span> <span class="o">=</span> <span class="n">case_config</span><span class="p">[</span><span class="s1">&#39;catalog_gen_path&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">case</span> <span class="ow">in</span> <span class="n">cases</span><span class="p">:</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">build_catalog</span><span class="p">(</span><span class="n">case</span><span class="p">)</span>
+    <span class="n">df_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   4 | elapsed:    0.7s remaining:    0.7s
+[Parallel(n_jobs=-1)]: Done   4 out of   4 | elapsed:    1.2s remaining:    0.0s
+[Parallel(n_jobs=-1)]: Done   4 out of   4 | elapsed:    1.2s finished
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  14 tasks      | elapsed:    2.6s
+[Parallel(n_jobs=-1)]: Done  68 tasks      | elapsed:    6.2s
+[Parallel(n_jobs=-1)]: Done 158 tasks      | elapsed:   12.2s
+[Parallel(n_jobs=-1)]: Done 284 tasks      | elapsed:   19.9s
+[Parallel(n_jobs=-1)]: Done 446 tasks      | elapsed:   30.2s
+[Parallel(n_jobs=-1)]: Done 644 tasks      | elapsed:   43.2s
+[Parallel(n_jobs=-1)]: Done 878 tasks      | elapsed:   58.3s
+[Parallel(n_jobs=-1)]: Done 1148 tasks      | elapsed:  1.3min
+[Parallel(n_jobs=-1)]: Done 1454 tasks      | elapsed:  1.6min
+[Parallel(n_jobs=-1)]: Done 1796 tasks      | elapsed:  2.0min
+[Parallel(n_jobs=-1)]: Done 2174 tasks      | elapsed:  2.5min
+[Parallel(n_jobs=-1)]: Done 2588 tasks      | elapsed:  3.0min
+[Parallel(n_jobs=-1)]: Done 3038 tasks      | elapsed:  3.5min
+[Parallel(n_jobs=-1)]: Done 3524 tasks      | elapsed:  4.1min
+[Parallel(n_jobs=-1)]: Done 4046 tasks      | elapsed:  4.7min
+[Parallel(n_jobs=-1)]: Done 4604 tasks      | elapsed:  5.4min
+[Parallel(n_jobs=-1)]: Done 5198 tasks      | elapsed:  6.1min
+[Parallel(n_jobs=-1)]: Done 5828 tasks      | elapsed:  6.9min
+[Parallel(n_jobs=-1)]: Done 6494 tasks      | elapsed:  7.7min
+[Parallel(n_jobs=-1)]: Done 7196 tasks      | elapsed:  9.4min
+[Parallel(n_jobs=-1)]: Done 7934 tasks      | elapsed: 10.6min
+[Parallel(n_jobs=-1)]: Done 8708 tasks      | elapsed: 11.6min
+[Parallel(n_jobs=-1)]: Done 9518 tasks      | elapsed: 12.6min
+[Parallel(n_jobs=-1)]: Done 10364 tasks      | elapsed: 13.7min
+[Parallel(n_jobs=-1)]: Done 11246 tasks      | elapsed: 14.9min
+[Parallel(n_jobs=-1)]: Done 12164 tasks      | elapsed: 16.3min
+[Parallel(n_jobs=-1)]: Done 13118 tasks      | elapsed: 17.5min
+[Parallel(n_jobs=-1)]: Done 14394 tasks      | elapsed: 18.9min
+[Parallel(n_jobs=-1)]: Done 16064 out of 16064 | elapsed: 20.2min finished
+/glade/work/mgrover/miniconda3/envs/obs-validation-dev/lib/python3.9/site-packages/ecgtools/builder.py:179: UserWarning: Unable to parse 36 assets/files. A list of these assets can be found in `.invalid_assets` attribute.
+  self.get_directories().get_filelist()._parse(
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">df_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="o">.</span><span class="n">save</span><span class="p">(</span>
+    <span class="s1">&#39;../data/hires_catalog.csv&#39;</span><span class="p">,</span>
+    <span class="c1"># Column name including filepath</span>
+    <span class="n">path_column_name</span><span class="o">=</span><span class="s1">&#39;path&#39;</span><span class="p">,</span>
+    <span class="c1"># Column name including variables</span>
+    <span class="n">variable_column_name</span><span class="o">=</span><span class="s1">&#39;variable&#39;</span><span class="p">,</span>
+    <span class="c1"># Data file format - could be netcdf or zarr (in this case, netcdf)</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="s2">&quot;netcdf&quot;</span><span class="p">,</span>
+    <span class="c1"># Which attributes to groupby when reading in variables using intake-esm</span>
+    <span class="n">groupby_attrs</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;component&quot;</span><span class="p">,</span> <span class="s2">&quot;stream&quot;</span><span class="p">,</span> <span class="s2">&quot;case&quot;</span><span class="p">],</span>
+    <span class="c1"># Aggregations which are fed into xarray when reading in data using intake</span>
+    <span class="n">aggregations</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;join_existing&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;attribute_name&quot;</span><span class="p">:</span> <span class="s2">&quot;time_range&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;options&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;dim&quot;</span><span class="p">:</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="s2">&quot;coords&quot;</span><span class="p">:</span> <span class="s2">&quot;minimal&quot;</span><span class="p">,</span> <span class="s2">&quot;compat&quot;</span><span class="p">:</span> <span class="s2">&quot;override&quot;</span><span class="p">},</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saved catalog location: ../data/hires_catalog.json and ../data/hires_catalog.csv
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/glade/scratch/mgrover/ipykernel_67924/57670825.py:1: UserWarning: Unable to parse 36 assets/files. A list of these assets can be found in ../data/invalid_assets_hires_catalog.csv.
+  b.save(
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-miniconda3-obs-validation-dev-py"
+        },
+        kernelOptions: {
+            kernelName: "conda-env-miniconda3-obs-validation-dev-py",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-miniconda3-obs-validation-dev-py'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="intro.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Introduction</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="01_Plot_Output.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Spin up a Dask Cluster</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By NCAR ESDS Team<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
