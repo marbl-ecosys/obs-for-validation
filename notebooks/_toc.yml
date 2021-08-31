@@ -1,5 +1,6 @@
 format: jb-book
 root: intro
 chapters:
-- file:  00_Generate_Catalog
-- file: 01_Plot_Output
+- file: 00_Generate_Catalog
+- file: 01_Compute_Climatology
+- file: 02_Plot_Output
