@@ -1,13 +1,27 @@
-name: analysis
+name: obs-validation-dev
 channels:
     - conda-forge
     - nodefaults
+    - pyviz
 dependencies:
-    - numpy
-    - xarray
-    - matplotlib
-    - cartopy
+    - bokeh
+    - bottleneck
+    - distributed
     - dask
-    - jupyter
+    - ncar-jobqueue
+    - xarray
+    - pyyaml
+    - intake-esm
+    - holoviews
+    - geoviews
+    - hvplot
+    - datashader
+    - panel
+    - matplotlib
     - jupyterlab
-    - netCDF4
+    - xesmf
+    - pop-tools
+    - pip
+    - pip:
+      - ecgtools
+      - pangeo-forge-recipes
