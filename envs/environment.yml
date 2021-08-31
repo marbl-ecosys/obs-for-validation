@@ -24,4 +24,3 @@ dependencies:
     - pip
     - pip:
       - ecgtools
-      - pangeo-forge-recipes
