@@ -4,3 +4,4 @@ chapters:
 - file: 00_Generate_Catalog
 - file: 01_Compute_Climatology
 - file: 02_Plot_Output
+- file: 03_regrid_woa_data
